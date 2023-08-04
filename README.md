@@ -33,7 +33,7 @@ Installation
 	composer require coresphere/console-bundle:0.6.0
 	```
 
-   3. Register the bundle in you AppKernel in the development section
+3. Register the bundle in you AppKernel in the development section
 
         ```php
        // config/bundle.php
@@ -51,8 +51,8 @@ Installation
 
 	# ...
 	when@dev:
-    coresphere_console:
-        resource: '@CoreSphereConsoleBundle/Resources/config/routing.yml'
+        coresphere_console:
+            resource: '@CoreSphereConsoleBundle/Resources/config/routing.yml'
 
 	```
 
