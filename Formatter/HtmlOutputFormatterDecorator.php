@@ -64,7 +64,7 @@ final class HtmlOutputFormatterDecorator implements OutputFormatterInterface
     /**
      * {@inheritdoc}
      */
-    public function isDecorated()
+    public function isDecorated(): bool
     {
         return $this->formatter->isDecorated();
     }
@@ -80,7 +80,7 @@ final class HtmlOutputFormatterDecorator implements OutputFormatterInterface
     /**
      * {@inheritdoc}
      */
-    public function hasStyle($name)
+    public function hasStyle($name): bool
     {
         return $this->formatter->hasStyle($name);
     }
@@ -88,7 +88,7 @@ final class HtmlOutputFormatterDecorator implements OutputFormatterInterface
     /**
      * {@inheritdoc}
      */
-    public function getStyle($name)
+    public function getStyle($name): OutputFormatterStyleInterface
     {
         return $this->formatter->getStyle($name);
     }
@@ -96,7 +96,7 @@ final class HtmlOutputFormatterDecorator implements OutputFormatterInterface
     /**
      * {@inheritdoc}
      */
-    public function format($message)
+    public function format($message): ?string
     {
         if (!$this->isDecorated()) {
             return $message;

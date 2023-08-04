@@ -33,7 +33,7 @@ class ApplicationFactory
      */
     private function registerCommandsToApplication(Application $application, KernelInterface $kernel)
     {
-        chdir($kernel->getRootDir().'/..');
+        chdir($kernel->getProjectDir().'/..');
 
         foreach ($this->getBundlesFromKernel($kernel) as $bundle) {
             $bundle->registerCommands($application);
