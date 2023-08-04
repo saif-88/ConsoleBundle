@@ -1,11 +1,6 @@
 ConsoleBundle
 =============
 
-[![Build Status](https://img.shields.io/travis/CoreSphere/ConsoleBundle.svg?style=flat-square)](https://travis-ci.org/CoreSphere/ConsoleBundle)
-[![Quality Score](https://img.shields.io/scrutinizer/g/CoreSphere/ConsoleBundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/CoreSphere/ConsoleBundle)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/CoreSphere/ConsoleBundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/CoreSphere/ConsoleBundle)
-
-
 This bundle allows you accessing the Symfony2 console via your browser.
 
 Features
@@ -21,50 +16,51 @@ Installation
 
 0. Make sure you have php 5.5 or newer installed. Make sure your composer file does not override the required php version of your project with in older one via the `config.plattform.php` setting.
 
-1. Install the latest version via composer:
+1. Add to composer repository
+
+    ```json
+   "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/saif-88/ConsoleBundle"
+        }
+    ]
+   ```
+   
+2. Install the latest version via composer:
 
 	```sh
-	composer require coresphere/console-bundle
+	composer require coresphere/console-bundle:0.6.0
 	```
 
-2. Register the bundle in you AppKernel in the development section
+   3. Register the bundle in you AppKernel in the development section
 
-	 ```php
-	// app/AppKernel.php
-	public function registerBundles()
-	{
-		$bundles = [
-	  		// other bundles here...
-		];
+        ```php
+       // config/bundle.php
+       return [
+       	...
+       	CoreSphere\ConsoleBundle\CoreSphereConsoleBundle::class => ['dev' => true],
+       ];
 
-		if (in_array($this->getEnvironment(), ['dev', 'test'])) {
-			// ...
-			$bundles[] = new CoreSphere\ConsoleBundle\CoreSphereConsoleBundle();
-	 	}
+       ```
 
-		return $bundles;
-	}
-	```
-
-3. Add the bundle's route to your app/config/routing_dev.yml
+4. Add the bundle's route to your app/config/routing_dev.yml
 
 	```yaml
-	# app/config/routing_dev.yml
+	# config/routes/coresphere_console.yml
 
 	# ...
-	_main:
-		resource: routing.yml
-	
-	coresphere_console:
-		resource: .
-		type: extra
+	when@dev:
+    coresphere_console:
+        resource: '@CoreSphereConsoleBundle/Resources/config/routing.yml'
+
 	```
 
 
-4. run the assets:install command to install the css and js files
+5. run the assets:install command to install the css and js files
 
 	```sh
-	./app/console assets:install web
+	./bin/console assets:install
 	```
 
 Tips
